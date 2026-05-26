@@ -2642,7 +2642,7 @@ gap-4
 
             <p className="
               text-sm
-              text-gray-300
+              text-black font-semibold
             ">
               {student.phone}
             </p>
