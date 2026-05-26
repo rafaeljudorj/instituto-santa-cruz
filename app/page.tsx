@@ -2354,7 +2354,7 @@ gap-4
 
     className="
       bg-gray-100
-      hover:bg-gray-200
+      hover:bg-gray-700
 
       p-3
       rounded-full
@@ -3050,14 +3050,15 @@ gap-4
             </span>
 
             <img
-              src={student.photo}
-              className="
-                size={40}
-                rounded-full
-                object-cover
-                max-w-full
-              "
-            />
+  src={student.photo}
+  className="
+    w-10
+    h-10
+    rounded-full
+    object-cover
+    max-w-full
+  "
+/>
 
             <h2 className="
               text-base md:text-xl
@@ -3454,13 +3455,14 @@ gap-4
     transition
 
     ${
-      activeTab === 'dashboard'
+      activeTab === 'students'
         ? 'text-emerald-700'
         : 'text-gray-500'
     }
   `}
 >
-    <Users size={22} />
+    <Users size={22} 
+    className="text-gray-700"/>
     Alunos
   </button>
 
@@ -3480,13 +3482,14 @@ gap-4
     transition
 
     ${
-      activeTab === 'dashboard'
+      activeTab === 'financial'
         ? 'text-emerald-700'
         : 'text-gray-500'
     }
   `}
 >
-  <DollarSign size={22} />
+  <DollarSign size={22}
+  className="text-gray-700" />
   Financeiro
 </button>
 
@@ -3506,13 +3509,14 @@ gap-4
     transition
 
     ${
-      activeTab === 'dashboard'
+      activeTab === 'teachers'
         ? 'text-emerald-700'
         : 'text-gray-500'
     }
   `}
 >
-    <GraduationCap size={22} />
+    <GraduationCap size={22} 
+    className="text-gray-700"/>
     Professores
   </button>
 
@@ -3597,7 +3601,7 @@ gap-4
 
           className="
             flex-1
-            bg-gray-200
+            bg-gray-700 text-white
             p-4
             rounded-2xl
             font-bold
