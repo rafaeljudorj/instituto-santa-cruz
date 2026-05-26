@@ -902,7 +902,7 @@ if (!logged) {
 
           <p className="
             text-center
-            text-gray-300
+            text-gray-700
             mb-8
           ">
             Plataforma de Gestão
@@ -1076,7 +1076,7 @@ if (!logged) {
 </div>
 
           <p className="
-            text-gray-300
+            text-gray-700
             mt-2
           ">
             Controle total da instituição em um só lugar 🚀
@@ -1353,7 +1353,7 @@ if (!logged) {
   </h2>
 
   <p className="
-    text-gray-300
+    text-gray-700
     mt-1
   ">
     {students.length} alunos cadastrados
@@ -1701,7 +1701,7 @@ if (!logged) {
         </h2>
 
         <p className="
-          text-gray-300
+          text-gray-700
           mt-1
         ">
           {groups.length} turmas cadastradas
@@ -1844,7 +1844,7 @@ gap-4
         </h2>
 
         <p className="
-          text-gray-300
+          text-gray-700
           mt-1
         ">
           {teachers.length} professores cadastrados
@@ -2132,7 +2132,7 @@ gap-4
       <div>
 
         <p className="
-          text-gray-300
+          text-gray-700
           mb-2
         ">
           Data chamada
@@ -2157,7 +2157,7 @@ gap-4
       <div>
 
         <p className="
-          text-gray-300
+          text-gray-700
           mb-2
         ">
           Hora chamada
@@ -2487,7 +2487,7 @@ gap-4
       </button>
 
       <p className="
-        text-gray-300
+        text-gray-700
         mt-4
       ">
         {payments.length} mensalidades
@@ -2749,7 +2749,7 @@ gap-4
               </h3>
 
               <p className="
-                text-gray-300
+                text-gray-700
               ">
                 R$ {payment.value}
               </p>
@@ -3238,7 +3238,7 @@ gap-4
 
               <span className="
   text-sm md:text-lg
-  text-gray-300
+  text-gray-700
   ml-4
 ">
 
@@ -3422,13 +3422,17 @@ gap-4
   flex
   flex-col
   items-center
-  text-sm
+  text-xs md:text-sm
   font-semibold
+  text-gray-700
 
   touch-manipulation
 "
   >
-    <LayoutDashboard size={24} />
+    <LayoutDashboard
+  size={22}
+  className="text-gray-700"
+/>
     Dashboard
   </button>
 
@@ -3441,8 +3445,9 @@ gap-4
   flex
   flex-col
   items-center
-  text-sm
+  text-xs md:text-sm
   font-semibold
+  text-gray-700
 
   touch-manipulation
 "
@@ -3462,8 +3467,9 @@ gap-4
   flex
   flex-col
   items-center
-  text-sm
+  text-xs md:text-sm
   font-semibold
+  text-gray-700
 
   touch-manipulation
 "
@@ -3483,8 +3489,9 @@ gap-4
   flex
   flex-col
   items-center
-  text-sm
+  text-xs md:text-sm
   font-semibold
+  text-gray-700
 
   touch-manipulation
 "
