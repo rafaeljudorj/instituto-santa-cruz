@@ -1353,7 +1353,7 @@ if (!logged) {
   </h2>
 
   <p className="
-    text-gray-700
+    text-gray-900
     mt-1
   ">
     {students.length} alunos cadastrados
@@ -1701,7 +1701,7 @@ if (!logged) {
         </h2>
 
         <p className="
-          text-gray-700
+          text-gray-900
           mt-1
         ">
           {groups.length} turmas cadastradas
@@ -1844,7 +1844,7 @@ gap-4
         </h2>
 
         <p className="
-          text-gray-700
+          text-gray-900
           mt-1
         ">
           {teachers.length} professores cadastrados
@@ -2487,7 +2487,7 @@ gap-4
       </button>
 
       <p className="
-        text-gray-700
+        text-gray-900
         mt-4
       ">
         {payments.length} mensalidades
