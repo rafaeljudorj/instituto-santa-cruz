@@ -2573,6 +2573,7 @@ gap-4
       text-sm md:text-lg
       font-bold
       mb-4
+      text-black
     ">
       Gerar Mensalidade
     </h3>
@@ -2641,6 +2642,7 @@ gap-4
 
             <p className="
               font-bold
+              text-black
             ">
               {student.name}
             </p>
@@ -2755,7 +2757,9 @@ gap-4
 </h3>
 
               <p className="
-                text-gray-700
+              text-2x1
+              font-bold
+              text-white
               ">
                 R$ {payment.value}
               </p>
