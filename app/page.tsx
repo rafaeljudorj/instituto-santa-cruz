@@ -797,7 +797,7 @@ async function generateMonthlyPayments() {
   loadPayments()
 
   alert(
-    'Mensalidades geradas!'
+    'Doações geradas!'
   )
 
 }
@@ -1389,12 +1389,14 @@ if (!logged) {
   placeholder="Pesquisar aluno"
 
   className="
-    w-full
-    border
-    rounded-2xl
-    p-4
-    mb-6
-  "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
 />
 
       <div className="
@@ -1414,11 +1416,14 @@ if (!logged) {
     placeholder="Nome do aluno"
 
     className="
-      flex-1
-      border
-      rounded-2xl
-      p-4
-    "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
   />
 
 <input
@@ -1434,11 +1439,14 @@ if (!logged) {
   placeholder="Responsável"
 
   className="
-    flex-1
-    border
-    rounded-2xl
-    p-4
-  "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
 />
 
 <input
@@ -1454,11 +1462,14 @@ if (!logged) {
   placeholder="Telefone"
 
   className="
-    flex-1
-    border
-    rounded-2xl
-    p-4
-  "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
 />  
 
 <select
@@ -1472,10 +1483,14 @@ if (!logged) {
   }
 
   className="
-    border
-    rounded-2xl
-    p-4
-  "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
 >
 
   <option value="">
@@ -1872,12 +1887,14 @@ gap-4
       placeholder="Pesquisar professor"
 
       className="
-        w-full
-        border
-        rounded-2xl
-        p-4
-        mb-6
-      "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
     />
 
     <div className="
@@ -1897,11 +1914,14 @@ gap-4
         placeholder="Nome do professor"
 
         className="
-          flex-1
-          border
-          rounded-2xl
-          p-4
-        "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
       />
 
       <button
@@ -2100,12 +2120,14 @@ gap-4
     }
 
     className="
-      border
-      rounded-2xl
-      p-4
-      w-full
-      max-w-md
-    "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
   >
 
     <option value="">
@@ -2230,13 +2252,14 @@ onClick={saveAttendance}
       }
 
       className="
-        border
-        rounded-2xl
-        p-4
-        w-full
-        h-32
-        mb-8
-      "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
     />
 
     <p className="
@@ -2416,12 +2439,14 @@ gap-4
         "
 
         className="
-          w-full
-          border
-          rounded-xl
-          p-3
-          h-28
-        "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
       />
 
     </div>
@@ -2489,7 +2514,7 @@ gap-4
           touch-manipulation
         "
       >
-        Gerar Mensalidades do Mês
+        Gerar doações do Mês
       </button>
 
       <p className="
@@ -2874,14 +2899,13 @@ gap-4
     }
 
     className="
+  w-full
   border
   rounded-2xl
   p-4
   text-black
+  placeholder:text-gray-500
   bg-white
-
-  w-full
-  max-w-md
 "
   >
 
