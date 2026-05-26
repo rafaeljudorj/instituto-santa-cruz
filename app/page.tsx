@@ -979,17 +979,19 @@ if (!logged) {
     <div className="
   w-full
   min-h-screen
-  pb-24
+  pb-32
   px-3
   md:px-6
   overflow-x-hidden
+  bg-gray-100
+  text-black
 ">
 
 <div className="
   flex
   flex-col
   md:flex-row
-  gap-3 md:gap-6
+  gap-2 md:gap-4
 ">
 
 <main className="flex-1">
@@ -1075,12 +1077,12 @@ if (!logged) {
 
 </div>
 
-          <p className="
-            text-gray-700
-            mt-2
-          ">
-            Controle total da instituição em um só lugar 🚀
-          </p>
+<p className="
+  text-gray-800
+  mt-2
+">
+  Controle total da instituição em um só lugar 🚀
+</p>
 
         </div>
 
@@ -1094,7 +1096,7 @@ if (!logged) {
   gap-2
   bg-white
   text-white
-  rounded-b-3xl
+  rounded-3xl
   overflow-hidden
   shadow-xl
 ">
@@ -1102,7 +1104,7 @@ if (!logged) {
 <button
       onClick={() => setActiveTab('students')}
       className="
-        h-28 md:h-56
+        h-32 md:h-44
         border
 
         touch-manipulation
@@ -1116,7 +1118,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-3 md:gap-6
+        gap-2 md:gap-4
       "
     >
       <UserPlus
@@ -1138,7 +1140,7 @@ if (!logged) {
   setActiveTab('groups')
 }
       className="
-        h-28 md:h-56
+        h-32 md:h-44
         border
 
         touch-manipulation
@@ -1152,7 +1154,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-3 md:gap-6
+        gap-2 md:gap-4
       "
     >
       <UsersRound
@@ -1172,7 +1174,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('attendance')}
       className="
-        h-28 md:h-56
+        h-32 md:h-44
         border
 
         touch-manipulation
@@ -1186,7 +1188,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-3 md:gap-6
+        gap-2 md:gap-4
       "
     >
       <ClipboardCheck
@@ -1206,7 +1208,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('calendar')}
       className="
-        h-28 md:h-56
+        h-32 md:h-44
         border
 
         touch-manipulation
@@ -1220,7 +1222,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-3 md:gap-6
+        gap-2 md:gap-4
       "
     >
       <FileText
@@ -1244,7 +1246,7 @@ if (!logged) {
   }
 
   className="
-        h-28 md:h-56
+        h-32 md:h-44
         border
 
         touch-manipulation
@@ -1258,7 +1260,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-3 md:gap-6
+        gap-2 md:gap-4
       "
     >
       <GraduationCap
@@ -1291,7 +1293,7 @@ if (!logged) {
 }}
 
       className="
-        h-28 md:h-56
+        h-32 md:h-44
         border
 
         touch-manipulation
@@ -1305,7 +1307,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-3 md:gap-6
+        gap-2 md:gap-4
       "
     >
       <DollarSign
@@ -2181,7 +2183,7 @@ gap-4
     <div className="
       grid
       md:grid-cols-3
-      gap-3 md:gap-6
+      gap-2 md:gap-4
       mt-6
     ">
 
