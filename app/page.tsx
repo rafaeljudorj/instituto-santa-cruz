@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from 'react'
 
+import QRCode from 'react-qr-code'
+
+import { Html5QrcodeScanner } from 'html5-qrcode'
+
 import {
   LayoutDashboard,
   Users,
@@ -21,6 +25,22 @@ import {
 import { supabase } from '@/lib/supabase'
 
 export default function Home() {
+
+useEffect(() => {
+
+  if (typeof window !== 'undefined') {
+
+    if ('serviceWorker' in navigator) {
+
+      navigator.serviceWorker
+        .register('/sw.js')
+        .catch(console.error)
+
+    }
+
+  }
+
+}, []) 
 
 const [reportTab, setReportTab] =
   useState('students')
@@ -58,6 +78,59 @@ const today =
 const [attendance, setAttendance] =
   useState<any[]>([])  
 
+const [scannerOpen, setScannerOpen] =
+  useState(false) 
+  
+useEffect(() => {
+
+  if (scannerOpen) {
+
+    const scanner =
+      new Html5QrcodeScanner(
+
+        'reader',
+
+        {
+          fps: 10,
+          qrbox: 250
+        },
+
+        false
+      )
+
+    scanner.render(
+
+      (decodedText) => {
+
+        const studentId =
+          Number(decodedText)
+
+        const student =
+          students.find(
+            (s: any) =>
+              s.id === studentId
+          )
+
+        if (student) {
+
+          markAttendance(student)
+
+          alert(
+            `${student.name} presente!`
+          )
+
+        }
+
+      },
+
+      () => {}
+
+    )
+
+  }
+
+}, [scannerOpen])  
+
 const [editingStudent, setEditingStudent] =
   useState<any>(null)
 
@@ -70,16 +143,62 @@ const [email, setEmail] =
 const [password, setPassword] =
   useState('')
 
-  const [logged, setLogged] =
+const [logged, setLogged] =
     useState(false)
 
-  const [activeTab, setActiveTab] =
+const [loading, setLoading] = useState(true)
+
+const [role, setRole] = useState('')
+
+const [activeTab, setActiveTab] =
   useState('dashboard')
   
-  const [students, setStudents] =
+const [students, setStudents] =
   useState<any[]>([])
 
+const [payments, setPayments] =
+  useState<any[]>([])
+
+const paidTotal = payments
+  .filter(
+    (p: any) =>
+      p.status === 'pago'
+  )
+  .reduce(
+    (acc: number, p: any) =>
+      acc + Number(p.value),
+    0
+  )
+
+const pendingTotal = payments
+  .filter(
+    (p: any) =>
+      p.status === 'pendente'
+  )
+  .reduce(
+    (acc: number, p: any) =>
+      acc + Number(p.value),
+    0
+  )
+
+const lateTotal = payments
+  .filter(
+    (p: any) =>
+      p.status === 'atrasado'
+  )
+  .reduce(
+    (acc: number, p: any) =>
+      acc + Number(p.value),
+    0
+  )  
+
 const [newStudent, setNewStudent] =
+  useState('')
+
+const [responsible, setResponsible] =
+  useState('')
+
+const [phone, setPhone] =
   useState('')
 
 const [selectedGroup, setSelectedGroup] =
@@ -161,11 +280,48 @@ async function loadStudents() {
 
 useEffect(() => {
 
+  async function checkUser() {
+
+    const { data } =
+      await supabase.auth.getSession()
+
+    if (data.session) {
+
+      setLogged(true)
+
+      const email =
+        data.session.user.email
+
+      const { data: userData } =
+        await supabase
+          .from('profiles')
+          .select('*')
+          .eq('email', email)
+          .single()
+
+      if (userData) {
+
+        setRole(userData.role)
+
+      }
+
+    }
+
+setLoading(false)
+
+  }
+
+  checkUser()
+
   loadAttendance()
 
   loadStudents()
 
   loadGroups()
+
+  updateLatePayments()
+
+  loadPayments()
 
 }, [])
 
@@ -182,6 +338,41 @@ async function loadGroups() {
   if (data) {
 
     setGroups(data)
+
+  }
+
+}
+
+async function updateLatePayments() {
+
+  const today =
+    new Date()
+      .toISOString()
+      .split('T')[0]
+
+  await supabase
+    .from('payments')
+    .update({
+      status: 'atrasado'
+    })
+    .lt('due_date', today)
+    .neq('status', 'pago')
+
+}
+
+async function loadPayments() {
+
+  const { data } =
+    await supabase
+      .from('payments')
+      .select('*')
+      .order('id', {
+        ascending: false
+      })
+
+  if (data) {
+
+    setPayments(data)
 
   }
 
@@ -224,7 +415,7 @@ async function markAttendance(
   {
     student_id: student.id,
     student_name: student.name,
-    student_photo: student.photo,
+    student_phone: student.phone,
     present: true
   }
 ])
@@ -348,10 +539,14 @@ photoUrl =
       name: newStudent,
       photo: photoUrl,
       group: selectedGroup,
+      responsible,
+      phone,
     },
   ])
 
   setNewStudent('')
+  setResponsible('')
+  setPhone('')
   setPhoto(null)
   setSelectedGroup('')
 
@@ -418,7 +613,21 @@ async function handleLogin() {
 
   }
 
-  setLogged(true)
+  const { data: userData } = await supabase
+  .from('profiles')
+  .select('*')
+  .eq('email', email)
+  .single()
+
+if (userData) {
+
+  setRole(userData.role)
+
+}
+
+console.log(userData)
+
+setLogged(true)
 
 }
 
@@ -439,6 +648,8 @@ async function saveAttendance() {
           student_id: student.id,
 
           student_name: student.name,
+
+          student_phone: student.phone,
 
           student_photo: student.photo,
 
@@ -482,6 +693,179 @@ async function addGroup() {
   setNewGroup('')
 
   loadGroups()
+
+}
+
+async function createPayment(
+  student: any
+) {
+
+  await supabase
+    .from('payments')
+    .insert([
+
+      {
+        student_id: student.id,
+
+        student_name: student.name,
+
+        student_phone: student.phone,
+
+        value: 10,
+
+        due_date:
+          new Date()
+            .toISOString()
+            .split('T')[0],
+
+        status: 'pendente'
+
+      }
+
+    ])
+
+  loadPayments()
+
+}
+
+async function generateMonthlyPayments() {
+
+  const currentMonth =
+    new Date()
+      .toISOString()
+      .slice(0, 7)
+
+  for (const student of students) {
+
+    const { data: existing } =
+      await supabase
+
+        .from('payments')
+
+        .select('*')
+
+        .eq(
+          'student_id',
+          student.id
+        )
+
+        .gte(
+          'due_date',
+          `${currentMonth}-01`
+        )
+
+        .lte(
+          'due_date',
+          `${currentMonth}-31`
+        )
+
+    if (
+      existing &&
+      existing.length > 0
+    ) {
+
+      continue
+
+    }
+
+    await supabase
+      .from('payments')
+      .insert([
+
+        {
+          student_id: student.id,
+
+          student_name: student.name,
+
+          student_phone: student.phone,
+
+          value: 10,
+
+          due_date:
+            new Date()
+              .toISOString()
+              .split('T')[0],
+
+          status: 'pendente'
+
+        }
+
+      ])
+
+  }
+
+  loadPayments()
+
+  alert(
+    'Mensalidades geradas!'
+  )
+
+}
+
+async function markAsPaid(
+  id: number
+) {
+
+  await supabase
+    .from('payments')
+    .update({
+      status: 'pago'
+    })
+    .eq('id', id)
+
+  loadPayments()
+
+}
+
+function sendWhatsApp(payment: any) {
+
+  const message = `Olá *${payment.student_name}*, passando para lembrar que a doação mensal de *R$ ${payment.value}* ainda não foi identificada. \n
+  
+  Pix: CNPJ: 20.444.207/0001-62 \n
+
+  Sua ajuda é fundamental para a instituição. \n
+  
+  INSTITUTO SANTA CRUZ.`
+
+  const phone =
+    payment.student_phone
+      ?.replace(/\D/g, '')
+
+  window.open(
+
+    `https://wa.me/55${phone}?text=${encodeURIComponent(message)}`,
+
+    '_blank'
+
+  )
+
+}
+
+if (loading) {
+
+  return (
+
+    <div className="
+      min-h-screen
+      flex
+      items-center
+      justify-center
+      bg-gray-100
+    ">
+
+      <div className="
+        text-2xl
+        font-bold
+        text-emerald-700
+      ">
+
+        Carregando...
+
+      </div>
+
+    </div>
+
+  )
 
 }
 
@@ -615,10 +999,9 @@ if (!logged) {
   w-full
 ">
 
-          <div className="
-  flex
-  items-center
-  gap-4
+         <div className="
+  w-full
+  mb-4
 ">
 
   {activeTab !== 'dashboard' && (
@@ -639,24 +1022,50 @@ if (!logged) {
 
   )}
 
-  <h1 className="
-    text-lg
+ <h1 className="
+  text-lg
+  font-bold
+">
+
+  {activeTab === 'dashboard' && 'Início'}
+
+  {activeTab === 'students' && 'Alunos'}
+
+  {activeTab === 'teachers' && 'Professores'}
+
+  {activeTab === 'attendance' && 'Chamada'}
+
+  {activeTab === 'calendar' && 'Relatório'}
+
+  {activeTab === 'financial' && 'Financeiro'}
+
+</h1>
+
+<button
+
+  onClick={async () => {
+
+    await supabase.auth.signOut()
+
+    setLogged(false)
+
+  }}
+
+  className="
+    bg-red-500
+    hover:bg-red-600
+    transition
+    text-white
+    px-5
+    py-2
+    rounded-2xl
     font-bold
-  ">
+  "
+>
 
-    {activeTab === 'dashboard' && 'Início'}
+  Sair
 
-    {activeTab === 'students' && 'Alunos'}
-
-    {activeTab === 'teachers' && 'Professores'}
-
-    {activeTab === 'attendance' && 'Chamada'}
-
-    {activeTab === 'calendar' && 'Relatório'}
-
-    {activeTab === 'financial' && 'Financeiro'}
-
-  </h1>
+</button>
 
 </div>
 
@@ -850,7 +1259,19 @@ if (!logged) {
     </button>
 
     <button
-  onClick={() => setActiveTab('financial')}
+  onClick={() => {
+
+  if (role !== 'financeiro' && role !== 'admin') {
+
+    alert('Sem permissão')
+
+    return
+
+  }
+
+  setActiveTab('financial')
+
+}}
 
       className="
         h-56
@@ -980,6 +1401,46 @@ if (!logged) {
       p-4
     "
   />
+
+<input
+
+  value={responsible}
+
+  onChange={(e) =>
+    setResponsible(
+      e.target.value
+    )
+  }
+
+  placeholder="Responsável"
+
+  className="
+    flex-1
+    border
+    rounded-2xl
+    p-4
+  "
+/>
+
+<input
+
+  value={phone}
+
+  onChange={(e) =>
+    setPhone(
+      e.target.value
+    )
+  }
+
+  placeholder="Telefone"
+
+  className="
+    flex-1
+    border
+    rounded-2xl
+    p-4
+  "
+/>  
 
 <select
 
@@ -1127,6 +1588,20 @@ if (!logged) {
   <span className="font-semibold">
     {student.name}
   </span>
+
+<div className="
+  bg-white
+  p-2
+  rounded-xl
+  mt-2
+">
+
+  <QRCode
+    value={String(student.id)}
+    size={80}
+  />
+
+</div>  
 
 </div>
 
@@ -1518,6 +1993,56 @@ if (!logged) {
 
     </h1>
 
+<button
+
+  onClick={() =>
+    setScannerOpen(
+      !scannerOpen
+    )
+  }
+
+  className="
+    bg-emerald-600
+    text-white
+    px-6
+    py-3
+    rounded-2xl
+    font-bold
+    mb-6
+  "
+>
+
+  📷 Escanear QR Code
+
+</button>
+
+{scannerOpen && (
+
+  <div className="
+  w-full
+  max-w-md
+  h-[350px]
+  overflow-hidden
+  rounded-3xl
+">
+
+{scannerOpen && (
+
+  <div
+    id="reader"
+    className="
+      w-full
+      max-w-md
+      mt-6
+    "
+  />
+
+)}
+
+  </div>
+
+)}
+
 <div className="
   mb-8
 ">
@@ -1564,9 +2089,9 @@ if (!logged) {
 
     <div className="
       grid
-      grid-cols-3
+      md:grid-cols-3
       gap-6
-      mb-8
+      mt-6
     ">
 
       <div>
@@ -1879,43 +2404,369 @@ onClick={saveAttendance}
     p-8
   ">
 
-    <h2 className="
-      text-xl
-      font-bold
-      mb-6
-    ">
-      Financeiro
-    </h2>
+    <div className="
+  flex
+  flex-col
+  gap-8
+  mb-10
+">
+
+  <div className="
+    flex
+    items-start
+    justify-between
+    gap-8
+    flex-wrap
+  ">
+
+    <div>
+
+      <h2 className="
+        text-xl
+        font-bold
+      ">
+        Financeiro
+      </h2>
+
+      <button
+        onClick={generateMonthlyPayments}
+        className="
+          bg-emerald-600
+          text-white
+          px-6
+          py-3
+          rounded-2xl
+          font-bold
+          mt-6
+        "
+      >
+        Gerar Mensalidades do Mês
+      </button>
+
+      <p className="
+        text-gray-500
+        mt-4
+      ">
+        {payments.length} mensalidades
+      </p>
+
+    </div>
 
     <div className="
       grid
       md:grid-cols-3
-      gap-6
+      gap-4
     ">
 
       <div className="
-        bg-green-100
-        rounded-2xl
+        bg-emerald-600
+        text-white
+        rounded-3xl
         p-6
       ">
-        Receitas
+        <p className="text-sm opacity-80">
+          Recebido
+        </p>
+
+        <h3 className="
+          text-3xl
+          font-bold
+          mt-2
+        ">
+          R$ {paidTotal}
+        </h3>
       </div>
 
       <div className="
-        bg-red-100
-        rounded-2xl
+        bg-yellow-500
+        text-white
+        rounded-3xl
         p-6
       ">
-        Despesas
+        <p className="text-sm opacity-80">
+          Pendente
+        </p>
+
+        <h3 className="
+          text-3xl
+          font-bold
+          mt-2
+        ">
+          R$ {pendingTotal}
+        </h3>
       </div>
 
       <div className="
-        bg-blue-100
-        rounded-2xl
+        bg-red-600
+        text-white
+        rounded-3xl
         p-6
       ">
-        Saldo
+        <p className="text-sm opacity-80">
+          Atrasado
+        </p>
+
+        <h3 className="
+          text-3xl
+          font-bold
+          mt-2
+        ">
+          R$ {lateTotal}
+        </h3>
       </div>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <h3 className="
+      text-lg
+      font-bold
+      mb-4
+    ">
+      Gerar Mensalidade
+    </h3>
+
+  <div className="
+  mb-10
+">
+
+  <h3 className="
+    text-lg
+    font-bold
+    mb-4
+  ">
+
+    Gerar Mensalidade
+
+  </h3>
+
+  <div className="
+    grid
+    md:grid-cols-2
+    gap-4
+  ">
+
+    {students.map((student: any) => (
+
+      <div
+
+        key={student.id}
+
+        className="
+          border
+          rounded-2xl
+          p-4
+
+          flex
+          items-center
+          justify-between
+        "
+      >
+
+        <div className="
+          flex
+          items-center
+          gap-3
+        ">
+
+          <img
+            src={student.photo}
+            className="
+              w-12
+              h-12
+              rounded-full
+              object-cover
+            "
+          />
+
+          <div>
+
+            <p className="
+              font-bold
+            ">
+              {student.name}
+            </p>
+
+            <p className="
+              text-sm
+              text-gray-500
+            ">
+              {student.phone}
+            </p>
+
+          </div>
+
+        </div>
+
+        <button
+
+          onClick={() =>
+            createPayment(student)
+          }
+
+          className="
+            bg-emerald-600
+            text-white
+            px-4
+            py-2
+            rounded-xl
+            font-bold
+          "
+        >
+
+          Gerar
+
+        </button>
+
+      </div>
+
+    ))}
+
+  </div>
+
+</div>         
+
+    </div>
+
+</div>
+
+<h3 className="
+  text-lg
+  font-bold
+  mb-4
+">
+
+  Histórico Financeiro
+
+</h3>
+
+    <div className="space-y-4">
+
+      {payments.map((payment: any) => (
+
+        <div
+
+          key={payment.id}
+
+          className="
+            border
+            rounded-2xl
+            p-6
+
+            flex
+            items-center
+            justify-between
+          "
+        >
+
+          <div className="
+            flex
+            items-center
+            gap-4
+          ">
+
+            <img
+  src={
+    students.find(
+      (s: any) =>
+        s.id === payment.student_id
+    )?.photo
+  }
+              className="
+                w-14
+                h-14
+                rounded-full
+                object-cover
+              "
+            />
+
+            <div>
+
+              <h3 className="
+                text-lg
+                font-bold
+              ">
+                {payment.student_name}
+              </h3>
+
+              <p className="
+                text-gray-500
+              ">
+                R$ {payment.value}
+              </p>
+
+            </div>
+
+          </div>
+
+          <button
+
+  onClick={() =>
+    markAsPaid(payment.id)
+  }
+
+  className={`
+    px-6
+    py-3
+    rounded-2xl
+    font-bold
+    text-white
+
+    ${
+      payment.status === 'pago'
+
+? 'bg-emerald-600'
+
+: payment.status === 'atrasado'
+
+? 'bg-red-700'
+
+: 'bg-yellow-500'
+    }
+  `}
+>
+
+  {
+    payment.status === 'pago'
+
+? 'Pago'
+
+: payment.status === 'atrasado'
+
+? 'Atrasado'
+
+: 'Marcar Pago'
+  }
+
+</button>
+
+<button
+
+  onClick={() =>
+    sendWhatsApp(payment)
+  }
+
+  className="
+    bg-green-600
+    text-white
+    px-4
+    py-2
+    rounded-xl
+    font-bold
+    mt-2
+  "
+>
+
+  Cobrar
+
+</button>
+
+        </div>
+
+      ))}
 
     </div>
 
@@ -2533,22 +3384,26 @@ onClick={saveAttendance}
     Alunos
   </button>
 
-  <button
-    onClick={() =>
-      setActiveTab('financial')
-    }
+  {(role === 'admin' || role === 'financeiro') && (
 
-    className="
-      flex
-      flex-col
-      items-center
-      text-sm
-      font-semibold
-    "
-  >
-    <DollarSign size={24} />
-    Financeiro
-  </button>
+<button
+  onClick={() =>
+    setActiveTab('financial')
+  }
+
+  className="
+    flex
+    flex-col
+    items-center
+    text-sm
+    font-semibold
+  "
+>
+  <DollarSign size={24} />
+  Financeiro
+</button>
+
+)}
 
   <button
     onClick={() =>
