@@ -1006,74 +1006,84 @@ if (!logged) {
   w-full
 ">
 
-         <div className="
+<div className="
   w-full
-  mb-4
+  mb-6
+
+  flex
+  items-center
+  justify-between
 ">
 
-  {activeTab !== 'dashboard' && (
+  <div>
 
-    <button
+    {activeTab !== 'dashboard' && (
 
-      onClick={() =>
-        setActiveTab('dashboard')
-      }
+      <button
+        onClick={() =>
+          setActiveTab('dashboard')
+        }
 
-      className="
-        text-sm md:text-lg
-        font-bold
-      "
-    >
-      ←
-    </button>
+        className="
+          text-sm
+          font-bold
+          mb-1
+        "
+      >
+        ← Voltar
+      </button>
 
-  )}
+    )}
 
- <h1 className="
-  text-sm md:text-lg
-  font-bold
-">
+    <h1 className="
+      text-xl
+      md:text-2xl
+      font-bold
+      text-black
+    ">
 
-  {activeTab === 'dashboard' && 'Início'}
+      {activeTab === 'dashboard' && 'Início'}
 
-  {activeTab === 'students' && 'Alunos'}
+      {activeTab === 'students' && 'Alunos'}
 
-  {activeTab === 'teachers' && 'Professores'}
+      {activeTab === 'teachers' && 'Professores'}
 
-  {activeTab === 'attendance' && 'Chamada'}
+      {activeTab === 'attendance' && 'Chamada'}
 
-  {activeTab === 'calendar' && 'Relatório'}
+      {activeTab === 'calendar' && 'Relatório'}
 
-  {activeTab === 'financial' && 'Financeiro'}
+      {activeTab === 'financial' && 'Financeiro'}
 
-</h1>
+    </h1>
 
-<button
+  </div>
 
-  onClick={async () => {
+  <button
 
-    await supabase.auth.signOut()
+    onClick={async () => {
 
-    setLogged(false)
+      await supabase.auth.signOut()
 
-  }}
+      setLogged(false)
 
-  className="
-    bg-red-500
-    hover:bg-red-600
-    transition
-    text-white
-    px-3 md:px-5
-    py-2
-    text-sm md:text-base
-    rounded-2xl
-    font-bold
-  "
->
+    }}
 
-  Sair
+    className="
+      bg-red-500
+      text-white
 
-</button>
+      px-4
+      py-2
+
+      rounded-2xl
+      font-bold
+      text-sm
+    "
+  >
+
+    Sair
+
+  </button>
 
 </div>
 
@@ -1104,7 +1114,7 @@ if (!logged) {
 <button
       onClick={() => setActiveTab('students')}
       className="
-        h-32 md:h-44
+        h-28 md:h-44
         border
 
         touch-manipulation
@@ -1122,7 +1132,7 @@ if (!logged) {
       "
     >
       <UserPlus
-        size={50}
+        size={42}
         className="text-emerald-700"
       />
 
@@ -1140,7 +1150,7 @@ if (!logged) {
   setActiveTab('groups')
 }
       className="
-        h-32 md:h-44
+        h-28 md:h-44
         border
 
         touch-manipulation
@@ -1158,7 +1168,7 @@ if (!logged) {
       "
     >
       <UsersRound
-        size={50}
+        size={42}
         className="text-emerald-700"
       />
 
@@ -1174,7 +1184,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('attendance')}
       className="
-        h-32 md:h-44
+        h-28 md:h-44
         border
 
         touch-manipulation
@@ -1192,7 +1202,7 @@ if (!logged) {
       "
     >
       <ClipboardCheck
-        size={50}
+        size={42}
         className="text-emerald-700"
       />
 
@@ -1208,7 +1218,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('calendar')}
       className="
-        h-32 md:h-44
+        h-28 md:h-44
         border
 
         touch-manipulation
@@ -1226,7 +1236,7 @@ if (!logged) {
       "
     >
       <FileText
-        size={50}
+        size={42}
         className="text-emerald-700"
       />
 
@@ -1246,7 +1256,7 @@ if (!logged) {
   }
 
   className="
-        h-32 md:h-44
+        h-28 md:h-44
         border
 
         touch-manipulation
@@ -1264,7 +1274,7 @@ if (!logged) {
       "
     >
       <GraduationCap
-  size={50}
+  size={42}
   className="text-emerald-700"
 />
 
@@ -1293,7 +1303,7 @@ if (!logged) {
 }}
 
       className="
-        h-32 md:h-44
+        h-28 md:h-44
         border
 
         touch-manipulation
@@ -1311,7 +1321,7 @@ if (!logged) {
       "
     >
       <DollarSign
-  size={50}
+  size={42}
   className="text-emerald-700"
 />
 
@@ -1369,7 +1379,7 @@ if (!logged) {
           bg-blue-600
           text-white
           px-6
-          py-3
+          py-2
           rounded-2xl
           font-semibold
         "
@@ -1654,7 +1664,7 @@ if (!logged) {
 
   <QRCode
     value={String(student.id)}
-    size={50}
+    size={42}
   />
 
 </div>  
@@ -1680,7 +1690,7 @@ if (!logged) {
       w-full
       bg-blue-600
       text-white
-      py-3
+      py-2
       rounded-2xl
       font-bold
     "
@@ -1699,7 +1709,7 @@ if (!logged) {
       w-full
       bg-red-500
       text-white
-      py-3
+      py-2
       rounded-2xl
       font-bold
     "
@@ -2095,7 +2105,7 @@ gap-4
     bg-emerald-600
     text-white
     px-6
-    py-3
+    py-2
     rounded-2xl
     font-bold
     mb-6
@@ -2420,7 +2430,7 @@ gap-4
     "
   >
 
-    <MessageCircle size={22} />
+    <MessageCircle size={20} />
 
   </button>
 
@@ -2536,7 +2546,7 @@ gap-4
           bg-emerald-600
           text-white
           px-6
-          py-3
+          py-2
           rounded-2xl
           font-bold
           mt-6
@@ -2822,7 +2832,7 @@ gap-4
 
   className={`
     px-6
-    py-3
+    py-2
     rounded-2xl
     font-bold
     text-white
@@ -3462,7 +3472,7 @@ gap-4
     items-center
     justify-around
 
-    py-3
+    py-2
 
     md:hidden
   "
@@ -3477,7 +3487,7 @@ gap-4
     flex
     flex-col
     items-center
-    text-xs
+    text-[11px]
     font-semibold
     transition
 
@@ -3489,7 +3499,7 @@ gap-4
   `}
 >
     <LayoutDashboard
-  size={22}
+  size={20}
   className="text-gray-700"
 />
     Dashboard
@@ -3504,7 +3514,7 @@ gap-4
     flex
     flex-col
     items-center
-    text-xs
+    text-[11px]
     font-semibold
     transition
 
@@ -3515,7 +3525,7 @@ gap-4
     }
   `}
 >
-    <Users size={22} 
+    <Users size={20} 
     className="text-gray-700"/>
     Alunos
   </button>
@@ -3531,7 +3541,7 @@ gap-4
     flex
     flex-col
     items-center
-    text-xs
+    text-[11px]
     font-semibold
     transition
 
@@ -3542,7 +3552,7 @@ gap-4
     }
   `}
 >
-  <DollarSign size={22}
+  <DollarSign size={20}
   className="text-gray-700" />
   Financeiro
 </button>
@@ -3558,7 +3568,7 @@ gap-4
     flex
     flex-col
     items-center
-    text-xs
+    text-[11px]
     font-semibold
     transition
 
@@ -3569,7 +3579,7 @@ gap-4
     }
   `}
 >
-    <GraduationCap size={22} 
+    <GraduationCap size={20} 
     className="text-gray-700"/>
     Professores
   </button>
