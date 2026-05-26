@@ -2139,7 +2139,7 @@ gap-4
       <div>
 
         <p className="
-          text-gray-700
+          text-gray-900
           mb-2
         ">
           Data chamada
@@ -2164,7 +2164,7 @@ gap-4
       <div>
 
         <p className="
-          text-gray-700
+          text-gray-900
           mb-2
         ">
           Hora chamada
@@ -2468,12 +2468,13 @@ gap-4
 
     <div>
 
-      <h2 className="
-        text-base md:text-xl
-        font-bold
-      ">
-        Financeiro
-      </h2>
+<h2 className="
+  text-base md:text-xl
+  font-bold
+  text-black
+">
+  Financeiro
+</h2>
 
       <button
         onClick={generateMonthlyPayments}
@@ -2582,16 +2583,6 @@ gap-4
   mb-10
 ">
 
-  <h3 className="
-    text-sm md:text-lg
-    font-bold
-    mb-4
-  ">
-
-    Gerar Mensalidade
-
-  </h3>
-
   <div className="
     grid
     md:grid-cols-2
@@ -2694,6 +2685,7 @@ gap-4
   text-sm md:text-lg
   font-bold
   mb-4
+  text-black
 ">
 
   Histórico Financeiro
