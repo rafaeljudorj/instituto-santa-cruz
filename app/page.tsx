@@ -1767,8 +1767,14 @@ if (!logged) {
             p-6
 
             flex
-            justify-between
-            items-center
+flex-col
+md:flex-row
+
+items-start
+md:items-center
+
+justify-between
+gap-4
           "
         >
 
@@ -1931,8 +1937,14 @@ if (!logged) {
               p-4
 
               flex
-              items-center
-              justify-between
+flex-col
+md:flex-row
+
+items-start
+md:items-center
+
+justify-between
+gap-4
             "
           >
 
@@ -2269,8 +2281,14 @@ onClick={saveAttendance}
               p-6
 
               flex
-              items-center
-              justify-between
+flex-col
+md:flex-row
+
+items-start
+md:items-center
+
+justify-between
+gap-4
             "
           >
 
@@ -2586,8 +2604,14 @@ onClick={saveAttendance}
           p-4
 
           flex
-          items-center
-          justify-between
+flex-col
+md:flex-row
+
+items-start
+md:items-center
+
+justify-between
+gap-4
         "
       >
 
@@ -2683,8 +2707,14 @@ onClick={saveAttendance}
             p-6
 
             flex
-            items-center
-            justify-between
+flex-col
+md:flex-row
+
+items-start
+md:items-center
+
+justify-between
+gap-4
           "
         >
 
@@ -3257,8 +3287,14 @@ onClick={saveAttendance}
   p-6
 
   flex
-  justify-between
-  items-center
+flex-col
+md:flex-row
+
+items-start
+md:items-center
+
+justify-between
+gap-4
 
   gap-8
 
