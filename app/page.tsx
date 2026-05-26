@@ -1611,9 +1611,12 @@ if (!logged) {
   </div>
 
 )}  
-  <span className="font-semibold">
-    {student.name}
-  </span>
+  <span className="
+  font-semibold
+  text-black
+">
+  {student.name}
+</span>
 
 <div className="
   bg-white
@@ -1694,7 +1697,7 @@ if (!logged) {
 
       <div>
 
-        <h2 className="
+<h2 className="
   text-base md:text-xl
   font-bold
   text-black
@@ -1974,7 +1977,7 @@ gap-4
 
               </div>
 
-              <span className="
+<span className="
   font-semibold
   text-black
 ">
@@ -2329,7 +2332,7 @@ gap-4
                 "
               />
 
-              <span className="
+<span className="
   font-semibold
   text-black
 ">
@@ -2743,12 +2746,13 @@ gap-4
 
             <div>
 
-              <h3 className="
-                text-sm md:text-lg
-                font-bold
-              ">
-                {payment.student_name}
-              </h3>
+<h3 className="
+  text-sm md:text-lg
+  font-bold
+  text-black
+">
+  {payment.student_name}
+</h3>
 
               <p className="
                 text-gray-700
@@ -3062,14 +3066,13 @@ gap-4
   "
 />
 
-            <h2 className="
-              text-base md:text-xl
-              font-bold
-            ">
-
-              {student.name}
-
-            </h2>
+<h2 className="
+  text-base md:text-xl
+  font-bold
+  text-black
+">
+  {student.name}
+</h2>
 
           </div>
 
