@@ -1346,11 +1346,12 @@ if (!logged) {
       <div>
 
   <h2 className="
-    text-base md:text-xl
-    font-bold
-  ">
-    Alunos
-  </h2>
+  text-base md:text-xl
+  font-bold
+  text-black
+">
+  Alunos
+</h2>
 
   <p className="
     text-gray-900
@@ -1694,11 +1695,12 @@ if (!logged) {
       <div>
 
         <h2 className="
-          text-base md:text-xl
-          font-bold
-        ">
-          Turmas
-        </h2>
+  text-base md:text-xl
+  font-bold
+  text-black
+">
+  Turmas
+</h2>
 
         <p className="
           text-gray-900
@@ -1837,11 +1839,12 @@ gap-4
       <div>
 
         <h2 className="
-          text-base md:text-xl
-          font-bold
-        ">
-          Professores
-        </h2>
+  text-base md:text-xl
+  font-bold
+  text-black
+">
+  Professores
+</h2>
 
         <p className="
           text-gray-900
@@ -1972,10 +1975,11 @@ gap-4
               </div>
 
               <span className="
-                font-semibold
-              ">
-                {teacher}
-              </span>
+  font-semibold
+  text-black
+">
+  {teacher}
+</span>
 
             </div>
 
@@ -2326,13 +2330,11 @@ gap-4
               />
 
               <span className="
-                text-sm md:text-lg
-                font-semibold
-              ">
-
-                {student.name}
-
-              </span>
+  font-semibold
+  text-black
+">
+  {student.name}
+</span>
 
             </div>
 
