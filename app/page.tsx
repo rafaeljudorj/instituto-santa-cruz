@@ -854,7 +854,7 @@ if (loading) {
     ">
 
       <div className="
-        text-2xl
+        text-base md:text-2xl
         font-bold
         text-emerald-700
       ">
@@ -902,7 +902,7 @@ if (!logged) {
 
           <p className="
             text-center
-            text-gray-500
+            text-gray-300
             mb-8
           ">
             Plataforma de Gestão
@@ -989,7 +989,7 @@ if (!logged) {
   flex
   flex-col
   md:flex-row
-  gap-6
+  gap-3 md:gap-6
 ">
 
 <main className="flex-1">
@@ -1076,7 +1076,7 @@ if (!logged) {
 </div>
 
           <p className="
-            text-gray-500
+            text-gray-300
             mt-2
           ">
             Controle total da instituição em um só lugar 🚀
@@ -1088,8 +1088,8 @@ if (!logged) {
 
   <div className="
   grid
-  grid-cols-1
-  md:grid-cols-2
+  grid-cols-2 
+  md:grid-cols-3
   w-full
   gap-2
   bg-white
@@ -1102,7 +1102,7 @@ if (!logged) {
 <button
       onClick={() => setActiveTab('students')}
       className="
-        h-40 md:h-56
+        h-28 md:h-56
         border
 
         touch-manipulation
@@ -1138,7 +1138,7 @@ if (!logged) {
   setActiveTab('groups')
 }
       className="
-        h-40 md:h-56
+        h-28 md:h-56
         border
 
         touch-manipulation
@@ -1172,7 +1172,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('attendance')}
       className="
-        h-40 md:h-56
+        h-28 md:h-56
         border
 
         touch-manipulation
@@ -1206,7 +1206,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('calendar')}
       className="
-        h-40 md:h-56
+        h-28 md:h-56
         border
 
         touch-manipulation
@@ -1244,7 +1244,7 @@ if (!logged) {
   }
 
   className="
-        h-40 md:h-56
+        h-28 md:h-56
         border
 
         touch-manipulation
@@ -1291,7 +1291,7 @@ if (!logged) {
 }}
 
       className="
-        h-40 md:h-56
+        h-28 md:h-56
         border
 
         touch-manipulation
@@ -1353,7 +1353,7 @@ if (!logged) {
   </h2>
 
   <p className="
-    text-gray-500
+    text-gray-300
     mt-1
   ">
     {students.length} alunos cadastrados
@@ -1701,7 +1701,7 @@ if (!logged) {
         </h2>
 
         <p className="
-          text-gray-500
+          text-gray-300
           mt-1
         ">
           {groups.length} turmas cadastradas
@@ -1844,7 +1844,7 @@ gap-4
         </h2>
 
         <p className="
-          text-gray-500
+          text-gray-300
           mt-1
         ">
           {teachers.length} professores cadastrados
@@ -2132,7 +2132,7 @@ gap-4
       <div>
 
         <p className="
-          text-gray-500
+          text-gray-300
           mb-2
         ">
           Data chamada
@@ -2157,7 +2157,7 @@ gap-4
       <div>
 
         <p className="
-          text-gray-500
+          text-gray-300
           mb-2
         ">
           Hora chamada
@@ -2487,7 +2487,7 @@ gap-4
       </button>
 
       <p className="
-        text-gray-500
+        text-gray-300
         mt-4
       ">
         {payments.length} mensalidades
@@ -2642,7 +2642,7 @@ gap-4
 
             <p className="
               text-sm
-              text-gray-500
+              text-gray-300
             ">
               {student.phone}
             </p>
@@ -2749,7 +2749,7 @@ gap-4
               </h3>
 
               <p className="
-                text-gray-500
+                text-gray-300
               ">
                 R$ {payment.value}
               </p>
@@ -3052,8 +3052,7 @@ gap-4
             <img
               src={student.photo}
               className="
-                w-16
-                h-16
+                size={40}
                 rounded-full
                 object-cover
                 max-w-full
@@ -3239,7 +3238,7 @@ gap-4
 
               <span className="
   text-sm md:text-lg
-  text-gray-500
+  text-gray-300
   ml-4
 ">
 
