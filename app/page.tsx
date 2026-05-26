@@ -1573,24 +1573,27 @@ if (!logged) {
 
   className="
     border
-    rounded-2xl
+    rounded-3xl
     p-4
+    bg-white
 
     flex
     flex-col
-    md:flex-row
 
-    items-start
-    md:items-center
+    gap-5
 
-    justify-between
-    gap-4
+    w-full
+    overflow-hidden
   "
 >
 
-      <div className="
+<div className="
+  flex
+  flex-col
   items-center
-  flex flex-col md:flex-row gap-4
+  text-center
+  gap-4
+  w-full
 ">
 
 {student.photo ? (
@@ -1601,12 +1604,13 @@ if (!logged) {
     alt={student.name}
 
     className="
-      w-12
-      h-12
-      rounded-full
-      object-cover
-      max-w-full
-    "
+  w-20
+  h-20
+  rounded-full
+  object-cover
+  border-2
+  border-gray-200
+"
   />
 
 ) : (
@@ -1638,10 +1642,12 @@ if (!logged) {
 </span>
 
 <div className="
-  bg-white
-  p-2
-  rounded-xl
-  mt-2
+  bg-gray-50
+  p-3
+  rounded-2xl
+  flex
+  justify-center
+  items-center
 ">
 
   <QRCode
@@ -1653,38 +1659,55 @@ if (!logged) {
 
 </div>
 
-<button
+<div className="
+  flex
+  gap-3
+  w-full
+">
 
-  onClick={() => {
+  <button
+    onClick={() => {
 
-    setEditingStudent(student)
+      setEditingStudent(student)
 
-    setEditName(student.name)
+      setEditName(student.name)
 
-  }}
+    }}
 
-  className="
-    text-blue-600
-    font-bold
-    mr-4
-  "
->
+    className="
+      w-full
+      bg-blue-600
+      text-white
+      py-3
+      rounded-2xl
+      font-bold
+    "
+  >
 
-  Editar
+    Editar
 
-</button>
+  </button>
 
-      <button
-        onClick={() =>
-  removeStudent(student.id)
-}
-        className="
-          text-red-500
-          font-semibold
-        "
-      >
-        Excluir
-      </button>
+  <button
+    onClick={() =>
+      removeStudent(student.id)
+    }
+
+    className="
+      w-full
+      bg-red-500
+      text-white
+      py-3
+      rounded-2xl
+      font-bold
+    "
+  >
+
+    Excluir
+
+  </button>
+
+</div>
 
     </div>
 
