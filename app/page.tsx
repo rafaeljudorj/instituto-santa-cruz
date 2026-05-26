@@ -886,7 +886,7 @@ if (!logged) {
           bg-white
           rounded-3xl
           shadow-2xl
-          p-8
+          p-4 md:p-8
           w-full
           max-w-md
         ">
@@ -979,7 +979,10 @@ if (!logged) {
     <div className="
   w-full
   min-h-screen
-  px-6
+  pb-24
+  px-3
+  md:px-6
+  overflow-x-hidden
 ">
 
 <div className="
@@ -1081,21 +1084,22 @@ if (!logged) {
 {activeTab === 'dashboard' && (
 
   <div className="
-    grid
-    grid-cols-2
-    w-full
-    gap-2
-    bg-white
-    text-white
-    rounded-b-3xl
-    overflow-hidden
-    shadow-xl
-  ">
+  grid
+  grid-cols-1
+  md:grid-cols-2
+  w-full
+  gap-2
+  bg-white
+  text-white
+  rounded-b-3xl
+  overflow-hidden
+  shadow-xl
+">
 
 <button
       onClick={() => setActiveTab('students')}
       className="
-        h-56
+        h-40 md:h-56
         border
 
         hover:bg-emerald-50
@@ -1111,7 +1115,7 @@ if (!logged) {
       "
     >
       <UserPlus
-        size={90}
+        size={50}
         className="text-emerald-700"
       />
 
@@ -1129,7 +1133,7 @@ if (!logged) {
   setActiveTab('groups')
 }
       className="
-        h-56
+        h-40 md:h-56
         border
 
         hover:bg-emerald-50
@@ -1145,7 +1149,7 @@ if (!logged) {
       "
     >
       <UsersRound
-        size={90}
+        size={50}
         className="text-emerald-700"
       />
 
@@ -1161,7 +1165,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('attendance')}
       className="
-        h-56
+        h-40 md:h-56
         border
 
         hover:bg-emerald-50
@@ -1177,7 +1181,7 @@ if (!logged) {
       "
     >
       <ClipboardCheck
-        size={90}
+        size={50}
         className="text-emerald-700"
       />
 
@@ -1193,7 +1197,7 @@ if (!logged) {
     <button
       onClick={() => setActiveTab('calendar')}
       className="
-        h-56
+        h-40 md:h-56
         border
 
         hover:bg-emerald-50
@@ -1209,7 +1213,7 @@ if (!logged) {
       "
     >
       <FileText
-        size={90}
+        size={50}
         className="text-emerald-700"
       />
 
@@ -1229,7 +1233,7 @@ if (!logged) {
   }
 
   className="
-        h-56
+        h-40 md:h-56
         border
 
         hover:bg-emerald-50
@@ -1245,7 +1249,7 @@ if (!logged) {
       "
     >
       <GraduationCap
-  size={90}
+  size={50}
   className="text-emerald-700"
 />
 
@@ -1274,7 +1278,7 @@ if (!logged) {
 }}
 
       className="
-        h-56
+        h-40 md:h-56
         border
 
         hover:bg-emerald-50
@@ -1290,7 +1294,7 @@ if (!logged) {
       "
     >
       <DollarSign
-  size={90}
+  size={50}
   className="text-emerald-700"
 />
 
@@ -1314,7 +1318,7 @@ if (!logged) {
     bg-white
     rounded-3xl
     shadow-xl
-    p-8
+    p-4 md:p-8
   ">
 
     <div className="
@@ -1327,7 +1331,7 @@ if (!logged) {
       <div>
 
   <h2 className="
-    text-xl
+    text-base md:text-xl
     font-bold
   ">
     Alunos
@@ -1379,7 +1383,7 @@ if (!logged) {
 
       <div className="
   flex
-  gap-4
+  flex flex-col md:flex-row gap-4
   mb-6
 ">
 
@@ -1546,7 +1550,7 @@ if (!logged) {
       <div className="
   flex
   items-center
-  gap-4
+  flex flex-col md:flex-row gap-4
 ">
 
 {student.photo ? (
@@ -1561,6 +1565,7 @@ if (!logged) {
       h-12
       rounded-full
       object-cover
+      max-w-full
     "
   />
 
@@ -1598,7 +1603,7 @@ if (!logged) {
 
   <QRCode
     value={String(student.id)}
-    size={80}
+    size={50}
   />
 
 </div>  
@@ -1656,7 +1661,7 @@ if (!logged) {
     bg-white
     rounded-3xl
     shadow-xl
-    p-8
+    p-4 md:p-8
   ">
 
     <div className="
@@ -1669,7 +1674,7 @@ if (!logged) {
       <div>
 
         <h2 className="
-          text-xl
+          text-base md:text-xl
           font-bold
         ">
           Turmas
@@ -1688,7 +1693,7 @@ if (!logged) {
 
     <div className="
       flex
-      gap-4
+      flex flex-col md:flex-row gap-4
       mb-8
     ">
 
@@ -1794,7 +1799,7 @@ if (!logged) {
     bg-white
     rounded-3xl
     shadow-xl
-    p-8
+    p-4 md:p-8
   ">
 
     <div className="
@@ -1807,7 +1812,7 @@ if (!logged) {
       <div>
 
         <h2 className="
-          text-xl
+          text-base md:text-xl
           font-bold
         ">
           Professores
@@ -1846,7 +1851,7 @@ if (!logged) {
 
     <div className="
       flex
-      gap-4
+      flex flex-col md:flex-row gap-4
       mb-6
     ">
 
@@ -1916,7 +1921,7 @@ if (!logged) {
             <div className="
               flex
               items-center
-              gap-4
+              flex flex-col md:flex-row gap-4
             ">
 
               <div className="
@@ -1977,7 +1982,7 @@ if (!logged) {
   <div className="
     bg-white
     rounded-3xl
-    p-8
+    p-4 md:p-8
     shadow-lg
     w-full
     max-w-5xl
@@ -2253,7 +2258,7 @@ onClick={saveAttendance}
             <div className="
               flex
               items-center
-              gap-4
+              flex flex-col md:flex-row gap-4
             ">
 
               <input
@@ -2280,6 +2285,7 @@ onClick={saveAttendance}
                   h-14
                   rounded-full
                   object-cover
+                  max-w-full
                 "
               />
 
@@ -2401,7 +2407,7 @@ onClick={saveAttendance}
     bg-white
     rounded-3xl
     shadow-xl
-    p-8
+    p-4 md:p-8
   ">
 
     <div className="
@@ -2422,7 +2428,7 @@ onClick={saveAttendance}
     <div>
 
       <h2 className="
-        text-xl
+        text-base md:text-xl
         font-bold
       ">
         Financeiro
@@ -2579,6 +2585,7 @@ onClick={saveAttendance}
               h-12
               rounded-full
               object-cover
+              max-w-full
             "
           />
 
@@ -2665,7 +2672,7 @@ onClick={saveAttendance}
           <div className="
             flex
             items-center
-            gap-4
+            flex flex-col md:flex-row gap-4
           ">
 
             <img
@@ -2680,6 +2687,7 @@ onClick={saveAttendance}
                 h-14
                 rounded-full
                 object-cover
+                max-w-full
               "
             />
 
@@ -2788,7 +2796,7 @@ onClick={saveAttendance}
   <div className="
     bg-emerald-700
     text-white
-    p-8
+    p-4 md:p-8
 ">
 
     <h1 className="
@@ -2971,7 +2979,7 @@ onClick={saveAttendance}
             items-center
             gap-10
 
-            p-8
+            p-4 md:p-8
 
             border-b
           "
@@ -2984,7 +2992,7 @@ onClick={saveAttendance}
           ">
 
             <span className="
-              text-xl
+              text-base md:text-xl
               font-bold
               text-gray-700
             ">
@@ -3000,11 +3008,12 @@ onClick={saveAttendance}
                 h-16
                 rounded-full
                 object-cover
+                max-w-full
               "
             />
 
             <h2 className="
-              text-xl
+              text-base md:text-xl
               font-bold
             ">
 
@@ -3166,13 +3175,13 @@ onClick={saveAttendance}
           ">
 
             <span className="
-              text-xl
+              text-base md:text-xl
             ">
               ⌄
             </span>
 
             <h2 className="
-              text-xl
+              text-base md:text-xl
               font-bold
             ">
 
@@ -3262,6 +3271,7 @@ onClick={saveAttendance}
               h-14
               rounded-full
               object-cover
+              max-w-full
             "
           />
 
@@ -3440,7 +3450,7 @@ onClick={saveAttendance}
 
     <div className="
       bg-white
-      p-8
+      p-4 md:p-8
       rounded-3xl
       w-[400px]
 
@@ -3473,7 +3483,7 @@ onClick={saveAttendance}
 
       <div className="
         flex
-        gap-4
+        flex flex-col md:flex-row gap-4
       ">
 
         <button
