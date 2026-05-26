@@ -892,7 +892,7 @@ if (!logged) {
         ">
 
           <h1 className="
-            text-lg
+            text-sm md:text-lg
             font-bold
             text-center
             mb-2
@@ -987,6 +987,8 @@ if (!logged) {
 
 <div className="
   flex
+  flex-col
+  md:flex-row
   gap-6
 ">
 
@@ -1016,7 +1018,7 @@ if (!logged) {
       }
 
       className="
-        text-lg
+        text-sm md:text-lg
         font-bold
       "
     >
@@ -1026,7 +1028,7 @@ if (!logged) {
   )}
 
  <h1 className="
-  text-lg
+  text-sm md:text-lg
   font-bold
 ">
 
@@ -1059,8 +1061,9 @@ if (!logged) {
     hover:bg-red-600
     transition
     text-white
-    px-5
+    px-3 md:px-5
     py-2
+    text-sm md:text-base
     rounded-2xl
     font-bold
   "
@@ -1102,8 +1105,10 @@ if (!logged) {
         h-40 md:h-56
         border
 
+        touch-manipulation
+
         hover:bg-emerald-50
-        hover:scale-105
+        md:hover:scale-105
         hover:shadow-2xl
         cursor-pointer
 
@@ -1111,7 +1116,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-6
+        gap-3 md:gap-6
       "
     >
       <UserPlus
@@ -1120,7 +1125,7 @@ if (!logged) {
       />
 
       <span className="
-        text-lg
+        text-sm md:text-lg
         font-bold
         text-emerald-700
       ">
@@ -1136,8 +1141,10 @@ if (!logged) {
         h-40 md:h-56
         border
 
+        touch-manipulation
+
         hover:bg-emerald-50
-        hover:scale-105
+        md:hover:scale-105
         hover:shadow-2xl
         cursor-pointer
 
@@ -1145,7 +1152,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-6
+        gap-3 md:gap-6
       "
     >
       <UsersRound
@@ -1154,7 +1161,7 @@ if (!logged) {
       />
 
       <span className="
-        text-lg
+        text-sm md:text-lg
         font-bold
         text-emerald-700
       ">
@@ -1168,8 +1175,10 @@ if (!logged) {
         h-40 md:h-56
         border
 
+        touch-manipulation
+
         hover:bg-emerald-50
-        hover:scale-105
+        md:hover:scale-105
         hover:shadow-2xl
         cursor-pointer
 
@@ -1177,7 +1186,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-6
+        gap-3 md:gap-6
       "
     >
       <ClipboardCheck
@@ -1186,7 +1195,7 @@ if (!logged) {
       />
 
       <span className="
-        text-lg
+        text-sm md:text-lg
         font-bold
         text-emerald-700
       ">
@@ -1200,8 +1209,10 @@ if (!logged) {
         h-40 md:h-56
         border
 
+        touch-manipulation
+
         hover:bg-emerald-50
-        hover:scale-105
+        md:hover:scale-105
         hover:shadow-2xl
         cursor-pointer
 
@@ -1209,7 +1220,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-6
+        gap-3 md:gap-6
       "
     >
       <FileText
@@ -1218,7 +1229,7 @@ if (!logged) {
       />
 
       <span className="
-        text-lg
+        text-sm md:text-lg
         font-bold
         text-emerald-700
       ">
@@ -1236,8 +1247,10 @@ if (!logged) {
         h-40 md:h-56
         border
 
+        touch-manipulation
+
         hover:bg-emerald-50
-        hover:scale-105
+        md:hover:scale-105
         hover:shadow-2xl
         cursor-pointer
 
@@ -1245,7 +1258,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-6
+        gap-3 md:gap-6
       "
     >
       <GraduationCap
@@ -1254,7 +1267,7 @@ if (!logged) {
 />
 
 <span className="
-  text-lg
+  text-sm md:text-lg
   font-bold
   text-emerald-700
 ">
@@ -1281,8 +1294,10 @@ if (!logged) {
         h-40 md:h-56
         border
 
+        touch-manipulation
+
         hover:bg-emerald-50
-        hover:scale-105
+        md:hover:scale-105
         hover:shadow-2xl
         cursor-pointer
 
@@ -1290,7 +1305,7 @@ if (!logged) {
         flex-col
         items-center
         justify-center
-        gap-6
+        gap-3 md:gap-6
       "
     >
       <DollarSign
@@ -1299,7 +1314,7 @@ if (!logged) {
 />
 
 <span className="
-  text-lg
+  text-sm md:text-lg
   font-bold
   text-emerald-700
 ">
@@ -1382,7 +1397,6 @@ if (!logged) {
 />
 
       <div className="
-  flex
   flex flex-col md:flex-row gap-4
   mb-6
 ">
@@ -1513,6 +1527,7 @@ if (!logged) {
       px-6
       rounded-2xl
       font-semibold
+      touch-manipulation
     "
   >
     Adicionar
@@ -1534,21 +1549,26 @@ if (!logged) {
   .map((student: any) => (
 
     <div
-      key={student.name}
+  key={student.name}
 
-      className="
-        border
-        rounded-2xl
-        p-4
+  className="
+    border
+    rounded-2xl
+    p-4
 
-        flex
-        items-center
-        justify-between
-      "
-    >
+    flex
+    flex-col
+    md:flex-row
+
+    items-start
+    md:items-center
+
+    justify-between
+    gap-4
+  "
+>
 
       <div className="
-  flex
   items-center
   flex flex-col md:flex-row gap-4
 ">
@@ -1692,7 +1712,6 @@ if (!logged) {
     </div>
 
     <div className="
-      flex
       flex flex-col md:flex-row gap-4
       mb-8
     ">
@@ -1754,7 +1773,7 @@ if (!logged) {
         >
 
           <h3 className="
-            text-lg
+            text-sm md:text-lg
             font-bold
           ">
 
@@ -1850,7 +1869,6 @@ if (!logged) {
     />
 
     <div className="
-      flex
       flex flex-col md:flex-row gap-4
       mb-6
     ">
@@ -1919,7 +1937,6 @@ if (!logged) {
           >
 
             <div className="
-              flex
               items-center
               flex flex-col md:flex-row gap-4
             ">
@@ -1989,7 +2006,7 @@ if (!logged) {
   ">
 
     <h1 className="
-      text-lg
+      text-sm md:text-lg
       font-bold
       mb-8
     ">
@@ -2014,6 +2031,7 @@ if (!logged) {
     rounded-2xl
     font-bold
     mb-6
+    touch-manipulation
   "
 >
 
@@ -2095,7 +2113,7 @@ if (!logged) {
     <div className="
       grid
       md:grid-cols-3
-      gap-6
+      gap-3 md:gap-6
       mt-6
     ">
 
@@ -2159,14 +2177,15 @@ if (!logged) {
 onClick={saveAttendance}
 
           className="
-            bg-green-600
-            text-white
-            px-8
-            py-4
-            rounded-2xl
-            font-bold
-            shadow-lg
-          "
+  bg-green-600
+  text-white
+  px-8
+  py-4
+
+  touch-manipulation
+
+  rounded-2xl
+"
         >
 
           Salvar
@@ -2256,7 +2275,6 @@ onClick={saveAttendance}
           >
 
             <div className="
-              flex
               items-center
               flex flex-col md:flex-row gap-4
             ">
@@ -2290,7 +2308,7 @@ onClick={saveAttendance}
               />
 
               <span className="
-                text-lg
+                text-sm md:text-lg
                 font-semibold
               ">
 
@@ -2444,6 +2462,7 @@ onClick={saveAttendance}
           rounded-2xl
           font-bold
           mt-6
+          touch-manipulation
         "
       >
         Gerar Mensalidades do Mês
@@ -2475,7 +2494,7 @@ onClick={saveAttendance}
         </p>
 
         <h3 className="
-          text-3xl
+          text-xl md:text-3xl
           font-bold
           mt-2
         ">
@@ -2494,7 +2513,7 @@ onClick={saveAttendance}
         </p>
 
         <h3 className="
-          text-3xl
+          text-xl md:text-3xl
           font-bold
           mt-2
         ">
@@ -2513,7 +2532,7 @@ onClick={saveAttendance}
         </p>
 
         <h3 className="
-          text-3xl
+          text-xl md:text-3xl
           font-bold
           mt-2
         ">
@@ -2528,7 +2547,7 @@ onClick={saveAttendance}
   <div>
 
     <h3 className="
-      text-lg
+      text-sm md:text-lg
       font-bold
       mb-4
     ">
@@ -2540,7 +2559,7 @@ onClick={saveAttendance}
 ">
 
   <h3 className="
-    text-lg
+    text-sm md:text-lg
     font-bold
     mb-4
   ">
@@ -2641,7 +2660,7 @@ onClick={saveAttendance}
 </div>
 
 <h3 className="
-  text-lg
+  text-sm md:text-lg
   font-bold
   mb-4
 ">
@@ -2670,7 +2689,6 @@ onClick={saveAttendance}
         >
 
           <div className="
-            flex
             items-center
             flex flex-col md:flex-row gap-4
           ">
@@ -2694,7 +2712,7 @@ onClick={saveAttendance}
             <div>
 
               <h3 className="
-                text-lg
+                text-sm md:text-lg
                 font-bold
               ">
                 {payment.student_name}
@@ -2800,7 +2818,7 @@ onClick={saveAttendance}
 ">
 
     <h1 className="
-      text-lg
+      text-sm md:text-lg
       font-bold
       mb-6
     ">
@@ -2858,8 +2876,8 @@ onClick={saveAttendance}
 
 <div className="
   flex
-  gap-16
-  text-lg
+  gap-6 md:gap-16
+  text-sm md:text-lg
   font-semibold
 ">
 
@@ -3035,7 +3053,7 @@ onClick={saveAttendance}
     flex
     items-center
     gap-3
-    text-lg
+    text-sm md:text-lg
   ">
 
     <span className="
@@ -3063,7 +3081,7 @@ onClick={saveAttendance}
     flex
     items-center
     gap-3
-    text-lg
+    text-sm md:text-lg
   ">
 
     <span className="
@@ -3190,7 +3208,7 @@ onClick={saveAttendance}
               {call.call_time}
 
               <span className="
-  text-lg
+  text-sm md:text-lg
   text-gray-500
   ml-4
 ">
@@ -3256,7 +3274,7 @@ onClick={saveAttendance}
 ">
 
           <span className="
-            text-lg
+            text-sm md:text-lg
             font-bold
           ">
 
@@ -3276,7 +3294,7 @@ onClick={saveAttendance}
           />
 
           <h3 className="
-  text-lg
+  text-sm md:text-lg
   font-bold
   min-w-[140px]
   text-black
@@ -3294,7 +3312,7 @@ onClick={saveAttendance}
             min-w-[120px]
             text-right
 
-            text-lg
+            text-sm md:text-lg
             font-bold
 
             ${
@@ -3366,12 +3384,14 @@ onClick={saveAttendance}
     }
 
     className="
-      flex
-      flex-col
-      items-center
-      text-sm
-      font-semibold
-    "
+  flex
+  flex-col
+  items-center
+  text-sm
+  font-semibold
+
+  touch-manipulation
+"
   >
     <LayoutDashboard size={24} />
     Dashboard
@@ -3383,12 +3403,14 @@ onClick={saveAttendance}
     }
 
     className="
-      flex
-      flex-col
-      items-center
-      text-sm
-      font-semibold
-    "
+  flex
+  flex-col
+  items-center
+  text-sm
+  font-semibold
+
+  touch-manipulation
+"
   >
     <Users size={24} />
     Alunos
@@ -3402,12 +3424,14 @@ onClick={saveAttendance}
   }
 
   className="
-    flex
-    flex-col
-    items-center
-    text-sm
-    font-semibold
-  "
+  flex
+  flex-col
+  items-center
+  text-sm
+  font-semibold
+
+  touch-manipulation
+"
 >
   <DollarSign size={24} />
   Financeiro
@@ -3421,12 +3445,14 @@ onClick={saveAttendance}
     }
 
     className="
-      flex
-      flex-col
-      items-center
-      text-sm
-      font-semibold
-    "
+  flex
+  flex-col
+  items-center
+  text-sm
+  font-semibold
+
+  touch-manipulation
+"
   >
     <GraduationCap size={24} />
     Professores
@@ -3452,13 +3478,15 @@ onClick={saveAttendance}
       bg-white
       p-4 md:p-8
       rounded-3xl
-      w-[400px]
+      w-full
+      max-w-md
+      mx-4
 
       space-y-4
     ">
 
       <h2 className="
-        text-lg
+        text-sm md:text-lg
         font-bold
       ">
 
@@ -3482,7 +3510,6 @@ onClick={saveAttendance}
       />
 
       <div className="
-        flex
         flex flex-col md:flex-row gap-4
       ">
 
