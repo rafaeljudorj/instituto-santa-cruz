@@ -1528,10 +1528,14 @@ if (!logged) {
   }}
 
   className="
-    border
-    rounded-2xl
-    p-3
-  "
+  w-full
+  border
+  rounded-2xl
+  p-4
+  text-black
+  placeholder:text-gray-500
+  bg-white
+"
 />
 
   <button
