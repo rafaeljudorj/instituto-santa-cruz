@@ -3414,21 +3414,25 @@ gap-4
 >
 
   <button
-    onClick={() =>
-      setActiveTab('dashboard')
+  onClick={() =>
+    setActiveTab('dashboard')
+  }
+
+  className={`
+    flex
+    flex-col
+    items-center
+    text-xs
+    font-semibold
+    transition
+
+    ${
+      activeTab === 'dashboard'
+        ? 'text-emerald-700'
+        : 'text-gray-500'
     }
-
-    className="
-  flex
-  flex-col
-  items-center
-  text-xs md:text-sm
-  font-semibold
-  text-gray-700
-
-  touch-manipulation
-"
-  >
+  `}
+>
     <LayoutDashboard
   size={22}
   className="text-gray-700"
@@ -3437,22 +3441,26 @@ gap-4
   </button>
 
   <button
-    onClick={() =>
-      setActiveTab('students')
+  onClick={() =>
+    setActiveTab('students')
+  }
+
+  className={`
+    flex
+    flex-col
+    items-center
+    text-xs
+    font-semibold
+    transition
+
+    ${
+      activeTab === 'dashboard'
+        ? 'text-emerald-700'
+        : 'text-gray-500'
     }
-
-    className="
-  flex
-  flex-col
-  items-center
-  text-xs md:text-sm
-  font-semibold
-  text-gray-700
-
-  touch-manipulation
-"
-  >
-    <Users size={24} />
+  `}
+>
+    <Users size={22} />
     Alunos
   </button>
 
@@ -3463,40 +3471,48 @@ gap-4
     setActiveTab('financial')
   }
 
-  className="
-  flex
-  flex-col
-  items-center
-  text-xs md:text-sm
-  font-semibold
-  text-gray-700
+  className={`
+    flex
+    flex-col
+    items-center
+    text-xs
+    font-semibold
+    transition
 
-  touch-manipulation
-"
+    ${
+      activeTab === 'dashboard'
+        ? 'text-emerald-700'
+        : 'text-gray-500'
+    }
+  `}
 >
-  <DollarSign size={24} />
+  <DollarSign size={22} />
   Financeiro
 </button>
 
 )}
 
   <button
-    onClick={() =>
-      setActiveTab('teachers')
+  onClick={() =>
+    setActiveTab('teachers')
+  }
+
+  className={`
+    flex
+    flex-col
+    items-center
+    text-xs
+    font-semibold
+    transition
+
+    ${
+      activeTab === 'dashboard'
+        ? 'text-emerald-700'
+        : 'text-gray-500'
     }
-
-    className="
-  flex
-  flex-col
-  items-center
-  text-xs md:text-sm
-  font-semibold
-  text-gray-700
-
-  touch-manipulation
-"
-  >
-    <GraduationCap size={24} />
+  `}
+>
+    <GraduationCap size={22} />
     Professores
   </button>
 
